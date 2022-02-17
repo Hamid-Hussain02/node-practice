@@ -1,0 +1,9 @@
+name,email,contact,city,company,company_id,createdAt,updatedAt
+Jack,jack@email.com,1234,NY,None,2,2022-02-16 12:08:36.394+05,2022-02-16 19:23:05.4+05
+Jack2,jack@email.com,1234,NY,None,2,2022-02-16 12:08:36.394+06,2022-02-16 19:23:05.4+06
+Jack3,jack@email.com,1235,NY,None,3,2022-02-16 12:08:36.394+07,2022-02-16 19:23:05.4+07
+Jack4,jack@email.com,1236,NY,None,4,2022-02-16 12:08:36.394+08,2022-02-16 19:23:05.4+08
+Jack5,jack@email.com,1237,NY,None,5,2022-02-16 12:08:36.394+09,2022-02-16 19:23:05.4+09
+Jack6,jack@email.com,1238,NY,None,6,2022-02-16 12:08:36.394+10,2022-02-16 19:23:05.4+10
+Jack7,jack@email.com,1239,NY,None,7,2022-02-16 12:08:36.394+11,2022-02-16 19:23:05.4+11
+Jack8,jack@email.com,1240,NY,None,8,2022-02-16 12:08:36.394+12,2022-02-16 19:23:05.4+12
