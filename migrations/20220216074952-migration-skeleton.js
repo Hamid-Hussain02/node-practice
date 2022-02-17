@@ -10,12 +10,8 @@ module.exports = {
      */
      return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.addColumn('Users', 'test1', {
-          type: Sequelize.DataTypes.STRING
-        }, { transaction: t }),
-        queryInterface.addColumn('Users', 'test2', {
-          type: Sequelize.DataTypes.STRING,
-        }, { transaction: t })
+        queryInterface.removeColumn('Users', 'test1', { transaction: t }),
+        queryInterface.removeColumn('Users', 'test2', { transaction: t })
       ]);
     });
   },
@@ -29,8 +25,8 @@ module.exports = {
      */
      return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.removeColumn('User', 'test1', { transaction: t }),
-        queryInterface.removeColumn('User', 'test2', { transaction: t })
+        queryInterface.removeColumn('Users', 'test1', { transaction: t }),
+        queryInterface.removeColumn('Users', 'test2', { transaction: t })
       ]);
     });
   }

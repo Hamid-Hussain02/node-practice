@@ -10,11 +10,8 @@ module.exports = {
      */
      return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.addColumn('Users', 'test1', {
+        queryInterface.addColumn('Users', 'company_id', {
           type: Sequelize.DataTypes.STRING
-        }, { transaction: t }),
-        queryInterface.addColumn('Users', 'test2', {
-          type: Sequelize.DataTypes.STRING,
         }, { transaction: t })
       ]);
     });
@@ -27,11 +24,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-     return queryInterface.sequelize.transaction(t => {
-      return Promise.all([
-        queryInterface.removeColumn('User', 'test1', { transaction: t }),
-        queryInterface.removeColumn('User', 'test2', { transaction: t })
-      ]);
-    });
   }
 };
