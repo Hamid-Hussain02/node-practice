@@ -1,7 +1,10 @@
 const bodyParser =require('body-parser')
 const express =require('express')
 const companies =require('./controllers/company')
+const teams =require('./controllers/team')
 const companyRoutes = require("./routes/company");
+const teamRoutes = require("./routes/team");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -38,6 +41,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/company", companyRoutes);
 app.use("/api/company", companyRoutes);
+app.use("/api/team", teamRoutes);
+app.use("/api/user", userRoutes);
 
 
 
