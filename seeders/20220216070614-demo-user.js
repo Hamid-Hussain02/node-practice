@@ -11,8 +11,8 @@ let users=[]
   // }
 
 
-  let promise = new Promise((resolve,reject)=>{
-    const csv = require('csv-parser')
+let promise = new Promise((resolve,reject)=>{
+const csv = require('csv-parser')
 const fs = require('fs')
 const results = [];
 
@@ -38,7 +38,7 @@ module.exports = {
 
      async function seedUsers (){
       let result = await promise
-
+      
       console.log("users", users,result)
       return queryInterface.bulkInsert('Users',result);
     } 
