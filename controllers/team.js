@@ -1,5 +1,6 @@
 const usersModel = require("../models").User;
 const teamModel = require("../models").Team;
+const companyModel = require("../models").Company;
 
 
 
@@ -16,6 +17,8 @@ const getTeams = async (req, res) => {
     res.status(400).json({error: error.toString()});
   }
 };
+
+
 
 
 module.exports = {

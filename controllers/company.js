@@ -1,5 +1,8 @@
+// const { Model } = require("sequelize/types");
+
 const usersModel = require("../models").User;
 const companyModel = require("../models").Company;
+const teamModel = require("../models").Team;
 
 
 
@@ -7,8 +10,14 @@ const companyModel = require("../models").Company;
  // one to one relation
 const getCompanies = async (req, res) => {
   try{
-  let companies = await companyModel.findAll({include:usersModel}
-    );
+  let companies = await companyModel.findAll({
+
+  include: [{
+    model: teamModel,
+    include: [usersModel]
+  }]
+
+  });
   
   res.status(200).send(companies);
   }

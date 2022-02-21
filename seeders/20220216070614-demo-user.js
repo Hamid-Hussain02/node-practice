@@ -20,12 +20,7 @@ fs.createReadStream('sample_users.csv')
   .pipe(csv())
   .on('data', (data) => results.push(data))
   .on('end', () => {
-    console.log(results);
     resolve(results)
-    // [
-    //   { NAME: 'Daffy Duck', AGE: '24' },
-    //   { NAME: 'Bugs Bunny', AGE: '22' }
-    // ]
   });
   })
 
@@ -34,12 +29,10 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     // return  getFile().then((result)=>{
       
-    // })
+    // })s
 
      async function seedUsers (){
       let result = await promise
-      
-      console.log("users", users,result)
       return queryInterface.bulkInsert('Users',result);
     } 
     return seedUsers()

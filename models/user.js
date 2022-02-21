@@ -11,14 +11,24 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.Company,{foreignKey:'id'})
-      this.hasOne(models.Team,{foreignKey:'id'})
+      this.hasOne(models.Company, { foreignKey: 'id' })
+      this.hasOne(models.Team, { foreignKey: 'id' })
     }
   }
   User.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [2,10]
+      }
+    },
     contact: DataTypes.INTEGER,
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
     company: DataTypes.STRING,
     city: DataTypes.STRING
   }, {

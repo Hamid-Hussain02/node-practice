@@ -12,11 +12,35 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Company.hasMany(models.User,{foreignKey:'company_id'});
+      Company.hasMany(models.Team,{foreignKey:'company_id'});
     }
   }
   Company.init({
-    name: DataTypes.STRING,
-    owner: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+          isAlphanumeric: true,
+          notNull: true,
+          notEmpty: true,
+          min: 1,
+          max: 255
+      }
+    },
+
+    owner: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      validate: {
+          isAlphanumeric: true,
+          notNull: true,
+          notEmpty: true,
+          min: 1,
+          max: 255
+      }
+    }
+   
+   
   }, {
     sequelize,
     modelName: 'Company',

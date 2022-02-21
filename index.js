@@ -7,16 +7,13 @@ const teamRoutes = require("./routes/team");
 const userRoutes = require("./routes/user");
 
 const app = express();
-
 const multiParty =require('connect-multiparty')
 
 
 
 
 app.use(bodyParser.json())
-
 app.use(bodyParser.urlencoded({extended:true}))
-
 app.use(multiParty())
 
 // const express = require("express");

@@ -1,7 +1,6 @@
 //method to validate user data
 function validateUser(req, res, next) {
     try {
-        console.log("request",req.body)
         if(req.body.name.length>2){
             next()
         }else{
