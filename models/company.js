@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Company.hasMany(models.User,{foreignKey:'company_id'});
+      Company.hasMany(models.User,{foreignKey:'company'});
       Company.hasMany(models.Team,{foreignKey:'company_id'});
     }
   }
@@ -38,9 +38,13 @@ module.exports = (sequelize, DataTypes) => {
           min: 1,
           max: 255
       }
+    },
+    user_id: {
+      type:DataTypes.INTEGER   
+    },
+    team_id: {
+      type:DataTypes.INTEGER
     }
-   
-   
   }, {
     sequelize,
     modelName: 'Company',

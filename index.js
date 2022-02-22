@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
     companies.getCompanies(req,res)
 });
 
-app.use("/api/company", companyRoutes);
+// app.use("/api/company", companyRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api/user", userRoutes);

@@ -23,7 +23,6 @@ function validateUser(req, res, next) {
 
   function isHamid(req, res, next) {
     try {
-        console.log("request",req.body)
         if(req.body.name=='hamid hussain'){
             next()
         }else{

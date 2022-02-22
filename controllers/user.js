@@ -8,7 +8,9 @@ const teamModel = require("../models").Team;
  // one to one relation
 const getUsers = async (req, res) => {
   try{
-  let users = await usersModel.findAll();
+      let users =await usersModel.findByPk(req.body.id)
+//   let users = await usersModel.findAll();
+console.log(users)
   
   res.status(200).send(users);
   }
@@ -16,6 +18,48 @@ const getUsers = async (req, res) => {
     res.status(400).json({error: error.toString()});
   }
 };
+const assignTeam = async (req, res) => {
+    try{
+     let user =await usersModel.findByPk(req.body.id)
+       let team = await teamModel.findByPk(req.body.team_id)
+    // let users = await usersModel.findAll();
+  user.addTeam(team)
+  console.log(user,team)
+    
+    res.status(200).send("user added in team successfully");
+    } 
+    catch (error) { 
+      res.status(400).json({error: error.toString()});
+    }
+  };
+
+//   const assignTeam = async (req, res) => {
+//     try{
+//        let user =await usersModel.findByPk(req.body.id)
+//        let team = await teamModel.findByPk(req.body.team_id)
+//   //   let users = await usersModel.findAll();
+//   user.addTeam(team)
+    
+//     res.status(200).send("user added in team successfully");
+//     }
+//     catch (error) { 
+//       res.status(400).json({error: error.toString()});
+//     }
+//   };
+
+  const getUserTeams = async (req, res) => {
+    try{
+       let user =await usersModel.findByPk(req.body.id)
+      // let team = await teamModel.findByPk(req.body.team_id)
+  //   let users = await usersModel.findAll();
+  let result = await user.getTeams()
+    
+    res.status(200).send(result);
+    }
+    catch (error) { 
+      res.status(400).json({error: error.toString()});
+    }
+  };
 
 const addUser = async (req, res) => {
     try{
@@ -34,10 +78,9 @@ const addUser = async (req, res) => {
         if(req.body.name)  object.name = req.body.name;
         if(req.body.email)  object.email = req.body.email;
         if(req.body.password)  object.password = req.body.password;
-        console.log(object);
         usersModel.update(object,{
           where: {
-            id: req.body.user_id
+            id: req.body.id
           }});
     // await userSave.save();
     res.status(200).send("User updated successfully");
@@ -52,7 +95,7 @@ const addUser = async (req, res) => {
         // console.log(object);
         usersModel.destroy({
           where: {
-            id: req.body.user_id
+            id: req.body.id
           }});
     // await userSave.save();
     res.status(200).send("User deleted Successfully");
@@ -67,5 +110,7 @@ module.exports = {
     getUsers,
     addUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    assignTeam,
+    getUserTeams
 };

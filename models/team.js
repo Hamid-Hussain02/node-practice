@@ -1,4 +1,5 @@
 'use strict';
+const { set } = require('express/lib/response');
 const {
   Model
 } = require('sequelize');
@@ -11,13 +12,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Team.hasMany(models.User,{foreignKey:'team_id'});
-      Team.hasOne(models.Company,{foreignKey:'id'});
+      // Team.hasMany(models.User,{foreignKey:'team_id'});
+      Team.hasOne(models.Company,{foreignKey:'team_id'});
+      Team.belongsToMany(models.User,{through:'UserTeams',foreignKey:'team_id'});
     }
   }
   Team.init({
-    name: DataTypes.STRING,
-    company: DataTypes.STRING
+    name: {
+      type:DataTypes.STRING,
+      validate:{
+        len:[2-20]
+      },
+      set(value){
+        this.setDataValue('name',value.toLowerCase())
+      }
+    },
+    company: {
+      type:DataTypes.STRING,
+      validate:{
+        len:[2-20]
+      }
+
+    },
+    user_id: {
+      type:DataTypes.INTEGER,
+    validate:{
+      min:2,
+      max:20
+    }
+  }
   }, {
     sequelize,
     modelName: 'Team',

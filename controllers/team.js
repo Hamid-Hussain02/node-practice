@@ -9,8 +9,7 @@ const companyModel = require("../models").Company;
  // one to one relation
 const getTeams = async (req, res) => {
   try{
-  let teams = await teamModel.findAll({include:usersModel});
-  
+  let teams = await teamModel.findAll({include:usersModel,});
   res.status(200).send(teams);
   }
   catch (error) { 

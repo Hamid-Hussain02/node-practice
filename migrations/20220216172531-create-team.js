@@ -3,6 +3,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Teams', {
       id: {
+        field:'UserId',
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

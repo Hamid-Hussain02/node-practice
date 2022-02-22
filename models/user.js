@@ -1,7 +1,9 @@
 'use strict';
+const { set, get } = require('express/lib/response');
 const {
   Model
 } = require('sequelize');
+const userTeam = require('./userTeam');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -11,8 +13,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.Company, { foreignKey: 'id' })
-      this.hasOne(models.Team, { foreignKey: 'id' })
+      this.hasOne(models.Company, { foreignKey: 'user_id' })
+      // this.hasOne(models.Team, { foreignKey: 'id' })
+      this.belongsToMany(models.Team,{through:'UserTeams',foreignKey:'user_id'});
     }
   }
   User.init({
@@ -20,18 +23,53 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         len: [2,10]
+      },
+      get(){
+        let value = this.getDataValue('name')
+        return value
       }
     },
-    contact: DataTypes.INTEGER,
+    contact:
+    { 
+      type:DataTypes.INTEGER,
+      validate:{
+        isNumeric:true
+      }
+    },
     email: {
       type: DataTypes.STRING,
+      unique:true,
       validate: {
-        isEmail: true
+        isEmail: true,
+      },
+      set(value){
+        this.setDataValue('email',value.toLowerCase())
       }
     },
-    company: DataTypes.STRING,
+    company: {
+    type:DataTypes.STRING,
+    allowNull:false,
+    validate:{
+      len:[2,20],
+    },
+    // get(value){
+    //   this.setDataValue('company',value.toLowerCase())
+    // },
+    get() {
+      var value = this.getDataValue('company');
+      return value ? value.toUpperCase():null;
+    },
+  },  
     city: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate: (user, options) => {
+        // user.name="test";
+      },
+      afterValidate: (user, options) => {
+        // user.name = 'test';
+      }
+    },
     sequelize,
     modelName: 'User',
   });

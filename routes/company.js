@@ -5,7 +5,7 @@ const userController = require("../controllers/company");
 
 
 router.get("/", userController.getCompanies);
-router.post("/",[userMiddleware.validateUser,userMiddleware.isHamid], userController.getCompanies);
+// router.post("/",[userMiddleware.validateUser,userMiddleware.isHamid], userController.getCompanies);
 
 
 module.exports = router;
