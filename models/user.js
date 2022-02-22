@@ -60,14 +60,19 @@ module.exports = (sequelize, DataTypes) => {
       return value ? value.toUpperCase():null;
     },
   },  
-    city: DataTypes.STRING
+    city: {
+      type:DataTypes.STRING,
+      validate:{
+        len:[2,20]
+      }
+    }
   }, {
     hooks: {
       beforeCreate: (user, options) => {
-        // user.name="test";
+        user.name=user.name.toLowerCase();
       },
       afterValidate: (user, options) => {
-        // user.name = 'test';
+        user.name = usr.name.toLowerCase();
       }
     },
     sequelize,
