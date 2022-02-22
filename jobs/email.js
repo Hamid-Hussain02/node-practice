@@ -17,7 +17,7 @@ const scheduleEmail = (req, res) => {
             from: '"Hamid" <iamhamid28@mailinator.com>',
             to: '"Hamid" <hamid.hussain@invozone.com>',
             subject: 'This is a test email',
-            text: "test"
+            text: "This is a test email sent by node mailier."
         })
             .then(_ => {console.log()
         res.send("Email sent on " + new Date())})
