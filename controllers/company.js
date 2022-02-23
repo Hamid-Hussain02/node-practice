@@ -11,7 +11,6 @@ const teamModel = require("../models").Team;
 const getCompanies = async (req, res) => {
   try{
   let companies = await companyModel.findAll({
-
   include: [{
     model: teamModel,
     include: [usersModel]
