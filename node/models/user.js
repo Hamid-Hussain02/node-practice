@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.Team,{through:'UserTeams',foreignKey:'user_id'});
     }
   }
-  User.init({
+  User.init({      
     name: {
       type: DataTypes.STRING,
       validate: {

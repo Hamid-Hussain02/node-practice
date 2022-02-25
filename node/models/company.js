@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
           isAlphanumeric: true,
           notNull: true,
           notEmpty: true,
-          min: 1,
-          max: 255
+          len:[2-20]
       }
     },
 
@@ -35,8 +34,7 @@ module.exports = (sequelize, DataTypes) => {
           isAlphanumeric: true,
           notNull: true,
           notEmpty: true,
-          min: 1,
-          max: 255
+          len:[2-20]
       }
     },
     user_id: {

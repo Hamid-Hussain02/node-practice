@@ -33,19 +33,6 @@ const assignTeam = async (req, res) => {
     }
   };
 
-//   const assignTeam = async (req, res) => {
-//     try{
-//        let user =await usersModel.findByPk(req.body.id)
-//        let team = await teamModel.findByPk(req.body.team_id)
-//   //   let users = await usersModel.findAll();
-//   user.addTeam(team)
-    
-//     res.status(200).send("user added in team successfully");
-//     }
-//     catch (error) { 
-//       res.status(400).json({error: error.toString()});
-//     }
-//   };
 
   const getUserTeams = async (req, res) => {
     try{
